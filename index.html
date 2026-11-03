@@ -1,96 +1,42 @@
-<!DOCTYPE html>
-<html lang="id">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#10172e">
-<title>Accounting Challenge</title>
+<!doctype html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#10172e"><title>Accounting Challenge</title>
 <style>
-:root{--bg:#10172e;--panel:#192442;--panel2:#223052;--text:#f5f7ff;--muted:#aab6d3;--cyan:#54d6d0;--yellow:#ffd166;--pink:#ff7aa2;--green:#62d99b}
-*{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(circle at 15% 5%,#293d70 0,transparent 34%),radial-gradient(circle at 90% 90%,#40285e 0,transparent 30%),var(--bg);color:var(--text);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;display:flex;align-items:center;justify-content:center;padding:18px}
-.app{width:min(720px,100%);background:rgba(25,36,66,.96);border:1px solid #3b4c73;border-radius:26px;padding:clamp(20px,5vw,36px);box-shadow:0 22px 70px #05091499}
-.brand{display:flex;align-items:center;justify-content:space-between;color:var(--cyan);font-weight:800;letter-spacing:2px;font-size:.78rem}.pill{background:#2a3a60;color:var(--yellow);padding:7px 12px;border-radius:99px;font-size:.75rem;letter-spacing:0}
-.hero{text-align:center;padding:24px 0 10px}.emoji{font-size:4.5rem;filter:drop-shadow(0 8px 12px #0006)}h1{font-size:clamp(2rem,7vw,3.4rem);line-height:1.05;margin:12px 0;background:linear-gradient(90deg,#fff,var(--cyan),var(--yellow));background-clip:text;color:transparent}.sub{color:var(--muted);line-height:1.6;max-width:510px;margin:12px auto 22px}
-input{width:100%;background:#101a34;border:1px solid #46577f;border-radius:13px;padding:15px;color:white;font-size:1rem;outline:none;margin:8px 0 14px}input:focus{border-color:var(--cyan)}
-button{border:0;border-radius:14px;padding:14px 18px;font-size:1rem;font-weight:800;cursor:pointer;transition:.18s}button:disabled{opacity:.45;cursor:not-allowed}.primary{background:linear-gradient(100deg,#35c9c3,#76e1bc);color:#102036;width:100%;box-shadow:0 8px 24px #35c9c344}.primary:hover{transform:translateY(-2px)}.secondary{background:#2b3b60;color:#fff;width:100%;margin-top:10px}
-.rules{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:20px 0}.rule{background:#202e50;border-radius:14px;padding:13px 8px;text-align:center;color:var(--muted);font-size:.82rem}.rule b{display:block;color:white;font-size:1.2rem;margin-bottom:4px}
-.topline{display:flex;justify-content:space-between;gap:12px;align-items:center;color:var(--muted);font-size:.9rem}.score{color:var(--yellow);font-weight:800}.track{height:9px;background:#101a34;border-radius:20px;overflow:hidden;margin:14px 0 24px}.fill{height:100%;width:0;background:linear-gradient(90deg,var(--cyan),var(--green));transition:width .3s}
-.category{color:var(--cyan);font-size:.78rem;font-weight:800;letter-spacing:1.5px;text-transform:uppercase}.question{font-size:clamp(1.2rem,4vw,1.65rem);line-height:1.35;margin:10px 0 22px}.options{display:grid;gap:11px}.option{text-align:left;background:#223052;color:#f4f6ff;border:1px solid #3b4d75;padding:15px;border-radius:14px;font-weight:600;line-height:1.4}.option:hover:not(:disabled){border-color:var(--cyan);background:#2b3e66}.option.selected{border-color:var(--cyan);background:#164b57}.option.correct{border-color:var(--green);background:#174b40}.option.wrong{border-color:var(--pink);background:#542c49}.letter{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:8px;background:#34466d;margin-right:10px;color:var(--yellow)}
-.feedback{padding:15px;border-radius:14px;background:#101a34;margin-top:17px;line-height:1.55;color:var(--muted)}.feedback strong{color:white}.next{margin-top:15px}
-.result{text-align:center}.result .big{font-size:4rem}.result h2{font-size:2rem;margin:8px 0}.points{font-size:3rem;color:var(--yellow);font-weight:900}.review{background:#202e50;border-radius:14px;padding:15px;margin:18px 0;text-align:left;color:var(--muted);line-height:1.6}
-.hidden{display:none!important}.small{font-size:.78rem;color:var(--muted);text-align:center;margin-top:18px}
-@media(max-width:480px){body{padding:10px}.app{border-radius:20px;padding:20px 16px}.rules{gap:6px}.rule{font-size:.72rem}.option{padding:13px}}
-</style>
-</head>
-<body>
-<main class="app">
-  <div class="brand"><span>✦ LEARN • PLAY • WIN</span><span class="pill">EDUKASI AKUNTANSI</span></div>
-  <section id="home">
-    <div class="hero">
-      <div class="emoji">📊💰</div>
-      <h1>ACCOUNTING<br>CHALLENGE</h1>
-      <p class="sub">Siap menguji kemampuan akuntansimu? Jawab 20 tantangan, kumpulkan poin, dan buktikan kamu jago mengelola angka!</p>
-    </div>
-    <label for="player" style="font-weight:700">Nama pemain</label>
-    <input id="player" maxlength="24" placeholder="Masukkan nama kamu (opsional)">
-    <div class="rules">
-      <div class="rule"><b>20</b>Pertanyaan</div><div class="rule"><b>100</b>Skor maksimal</div><div class="rule"><b>5</b>Poin / soal</div>
-    </div>
-    <button class="primary" id="start">MULAI PERMAINAN 🚀</button>
-    <p class="small">Bisa dimainkan sendiri atau bergantian bersama teman.</p>
-  </section>
-  <section id="game" class="hidden">
-    <div class="topline"><span id="playerLabel">Pemain</span><span class="score">⭐ <span id="score">0</span> poin</span></div>
-    <div class="track"><div class="fill" id="progress"></div></div>
-    <div class="topline"><span id="counter">PERTANYAAN 1 / 20</span><span class="pill" id="level">PEMULA</span></div>
-    <div class="category" id="category">DASAR AKUNTANSI</div>
-    <h2 class="question" id="question"></h2>
-    <div class="options" id="options"></div>
-    <div id="feedback" class="feedback hidden" aria-live="polite"></div>
-    <button id="next" class="primary next hidden">PERTANYAAN BERIKUTNYA →</button>
-  </section>
-  <section id="result" class="hidden result">
-    <div class="big">🏆</div><div class="category">TANTANGAN SELESAI</div>
-    <h2 id="greeting">Kerja bagus!</h2>
-    <div class="points" id="finalScore">0/100</div>
-    <p class="sub" id="message"></p>
-    <div class="review" id="review"></div>
-    <button class="primary" id="again">MAIN LAGI 🔄</button>
-    <p class="small">Bagikan file game ini kepada teman agar mereka juga bisa bermain.</p>
-  </section>
-</main>
+*{box-sizing:border-box}body{margin:0;padding:18px;background:linear-gradient(145deg,#10172e,#263b69);font-family:system-ui,sans-serif;color:#f5f7ff;min-height:100vh}.app{max-width:700px;margin:auto;background:#192442;border:1px solid #52658e;border-radius:22px;padding:22px;box-shadow:0 16px 45px #0006}.brand{display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap}.brand h1{font-size:1.25rem}.pill{background:#30446d;padding:6px 11px;border-radius:30px;font-size:.75rem;font-weight:bold}.hero{text-align:center;padding:20px 5px}.emoji{font-size:3rem}.muted,.small{color:#b4c0dc;line-height:1.5}.small{font-size:.85rem}input{width:100%;padding:14px;border-radius:12px;border:1px solid #60749c;background:#101a34;color:white;font-size:1rem;margin:8px 0 15px}button{border:0;border-radius:12px;padding:14px;font-size:1rem;font-weight:800;cursor:pointer}.primary{width:100%;background:#ffd166;color:#28233a}.secondary{background:#30446d;color:white}.top{display:flex;justify-content:space-between;margin:18px 0 9px;color:#c4cde2}.progress{height:9px;background:#101a34;border-radius:20px;overflow:hidden}.progress span{display:block;height:100%;background:#35d39a;width:0}.question{font-size:1.2rem;line-height:1.5;margin:22px 0 15px;font-weight:800}.options{display:grid;gap:10px}.option{width:100%;text-align:left;background:#293b62;color:white;border:1px solid #52658e;line-height:1.4}.option:disabled{opacity:1}.correct{background:#145b4a!important;border-color:#35d39a!important}.wrong{background:#692f43!important;border-color:#ff6b7a!important}.feedback{display:none;padding:13px;border-radius:12px;margin-top:14px;line-height:1.5}.feedback.show{display:block}.good{background:#145b4a}.bad{background:#692f43}.hidden{display:none!important}.row{margin-top:16px}.row button{width:100%}.result{text-align:center;padding:20px 4px}.score{font-size:3rem;color:#ffd166;font-weight:900}footer{text-align:center;color:#91a0c1;font-size:.8rem;margin-top:18px}
+</style></head><body><main class="app">
+<div class="brand"><h1>📊 ACCOUNTING CHALLENGE</h1><span class="pill">EDUKASI AKUNTANSI</span></div>
+<section id="start"><div class="hero"><div class="emoji">🧾💡</div><h2>Tantang Pengetahuan Akuntansimu!</h2><p class="muted">Jawab 20 pertanyaan, kumpulkan poin, dan buktikan kamu jago mengelola angka.</p></div><b>Nama pemain (opsional)</b><input id="player" maxlength="24" placeholder="Masukkan nama kamu"><p class="small">20 pertanyaan • 5 poin per soal • Skor maksimal 100</p><button class="primary" id="startBtn">MULAI PERMAINAN 🚀</button><p class="small" style="text-align:center">Bisa dimainkan sendiri atau bergantian bersama teman.</p></section>
+<section id="game" class="hidden"><div class="top"><span id="playerLabel"></span><b>⭐ <span id="score">0</span> poin</b></div><div class="progress"><span id="bar"></span></div><div class="top"><span id="counter"></span><span class="pill" id="level"></span></div><div class="question" id="question"></div><div class="options" id="options"></div><div id="feedback" class="feedback" aria-live="polite"></div><div class="row"><button class="secondary hidden" id="nextBtn">BERIKUTNYA →</button></div></section>
+<section id="result" class="hidden result"><div class="emoji">🏆</div><h2>Tantangan selesai!</h2><p class="muted" id="resultName"></p><div class="score" id="finalScore"></div><h3 id="rank"></h3><p class="muted" id="message"></p><button class="primary" id="againBtn">MAIN LAGI 🔄</button><p class="small">Bagikan halaman game ini kepada teman agar mereka juga bisa bermain.</p></section>
+<footer>Accounting Challenge • Belajar akuntansi jadi lebih seru</footer></main>
 <script>
-const questions=[
-{c:"Dasar Akuntansi",q:"Apa yang dimaksud dengan akuntansi?",o:["Kegiatan menjual barang","Proses mencatat, mengelompokkan, dan melaporkan keuangan","Kegiatan meminjam uang","Proses membuat produk"],a:1,e:"Akuntansi adalah proses mencatat, mengelompokkan, meringkas, dan melaporkan transaksi keuangan."},
-{c:"Dasar Akuntansi",q:"Persamaan dasar akuntansi yang benar adalah ...",o:["Harta = Utang + Modal","Harta = Modal - Utang","Utang = Harta + Modal","Modal = Harta + Utang"],a:0,e:"Persamaan dasar akuntansi adalah Harta = Utang + Modal."},
-{c:"Dasar Akuntansi",q:"Apa istilah lain dari harta dalam akuntansi?",o:["Liability","Capital","Asset","Expense"],a:2,e:"Asset berarti aset atau harta yang dimiliki perusahaan."},
-{c:"Dasar Akuntansi",q:"Uang tunai yang dimiliki perusahaan termasuk akun ...",o:["Utang","Kas","Modal","Beban"],a:1,e:"Kas merupakan uang tunai yang dimiliki perusahaan."},
-{c:"Dasar Akuntansi",q:"Pihak yang menggunakan laporan keuangan perusahaan disebut ...",o:["Pengguna laporan keuangan","Pemasok saja","Karyawan saja","Pembeli saja"],a:0,e:"Pengguna laporan keuangan bisa berupa pemilik, investor, kreditur, dan pihak lainnya."},
-{c:"Transaksi",q:"Jika pemilik menyetorkan uang tunai sebagai modal, maka ...",o:["Kas bertambah dan modal bertambah","Kas berkurang","Utang bertambah","Beban bertambah"],a:0,e:"Setoran modal meningkatkan kas dan modal perusahaan."},
-{c:"Transaksi",q:"Pembelian perlengkapan secara tunai menyebabkan ...",o:["Kas bertambah","Perlengkapan bertambah dan kas berkurang","Utang bertambah","Modal bertambah"],a:1,e:"Perlengkapan bertambah, sedangkan kas berkurang."},
-{c:"Laporan Keuangan",q:"Laporan yang menunjukkan pendapatan dan beban disebut ...",o:["Neraca","Laporan arus kas","Laporan laba rugi","Jurnal umum"],a:2,e:"Laporan laba rugi menunjukkan pendapatan, beban, serta laba atau rugi."},
-{c:"Istilah Akuntansi",q:"Apa yang dimaksud dengan debit?",o:["Sisi kiri akun","Sisi kanan akun","Nama laporan","Jumlah keuntungan"],a:0,e:"Debit adalah sisi kiri dalam pencatatan akun."},
-{c:"Istilah Akuntansi",q:"Apa yang dimaksud dengan kredit?",o:["Sisi kiri akun","Sisi kanan akun","Nama aset","Nama beban"],a:1,e:"Kredit adalah sisi kanan dalam pencatatan akun."},
-{c:"Perhitungan",q:"Pendapatan Rp2.000.000 dan beban Rp500.000. Berapa labanya?",o:["Rp500.000","Rp1.000.000","Rp1.500.000","Rp2.500.000"],a:2,e:"Laba = Pendapatan - Beban = Rp2.000.000 - Rp500.000 = Rp1.500.000."},
-{c:"Kelompok Akun",q:"Akun yang termasuk kelompok kewajiban adalah ...",o:["Kas","Piutang","Utang usaha","Peralatan"],a:2,e:"Utang usaha merupakan kewajiban perusahaan kepada pihak lain."},
-{c:"Pencatatan",q:"Buku yang digunakan untuk mencatat transaksi pertama kali adalah ...",o:["Buku besar","Jurnal umum","Neraca","Buku kas"],a:1,e:"Transaksi pertama kali dicatat dalam jurnal."},
-{c:"Pencatatan",q:"Apa fungsi buku besar?",o:["Mencatat transaksi berdasarkan akun","Menghitung jumlah karyawan","Mencatat daftar pelanggan saja","Membuat iklan"],a:0,e:"Buku besar mengelompokkan transaksi berdasarkan masing-masing akun."},
-{c:"Perhitungan",q:"Harta Rp10.000.000 dan utang Rp4.000.000. Berapa modalnya?",o:["Rp4.000.000","Rp5.000.000","Rp6.000.000","Rp14.000.000"],a:2,e:"Modal = Harta - Utang = Rp10.000.000 - Rp4.000.000 = Rp6.000.000."},
-{c:"Kelompok Akun",q:"Pembayaran gaji karyawan termasuk ...",o:["Pendapatan","Beban","Modal","Piutang"],a:1,e:"Gaji karyawan termasuk beban operasional perusahaan."},
-{c:"Laporan Keuangan",q:"Laporan posisi keuangan dikenal juga dengan nama ...",o:["Laporan laba rugi","Neraca","Jurnal umum","Buku besar"],a:1,e:"Neraca menunjukkan posisi aset, kewajiban, dan ekuitas."},
-{c:"Transaksi",q:"Perusahaan menerima uang dari pelanggan atas jasa yang telah diberikan. Akun yang bertambah adalah ...",o:["Beban dan utang","Kas dan pendapatan","Kas dan beban","Utang dan modal"],a:1,e:"Kas bertambah karena menerima uang dan pendapatan bertambah karena jasa telah diberikan."},
-{c:"Laporan Keuangan",q:"Tujuan utama dibuatnya laporan keuangan adalah ...",o:["Mempercantik perusahaan","Memberikan informasi kondisi keuangan","Menambah jumlah karyawan","Mengurangi jumlah pelanggan"],a:1,e:"Laporan keuangan memberikan informasi untuk membantu pengambilan keputusan."},
-{c:"Perhitungan",q:"Pendapatan Rp5.000.000 dan beban Rp6.000.000. Perusahaan mengalami ...",o:["Laba Rp1.000.000","Laba Rp11.000.000","Rugi Rp1.000.000","Impas"],a:2,e:"Rugi = Beban - Pendapatan = Rp1.000.000."}
+const Q=[
+["Apa yang dimaksud dengan akuntansi?",["Proses mencatat, mengelompokkan, dan melaporkan informasi keuangan","Kegiatan menjual barang saja","Cara menghitung jumlah pegawai","Kegiatan menyimpan uang di bank"],0,"Akuntansi mengolah transaksi keuangan menjadi informasi untuk mengambil keputusan."],
+["Persamaan dasar akuntansi yang benar adalah ...",["Harta = Utang − Modal","Harta = Utang + Modal","Modal = Harta + Utang","Utang = Harta + Modal"],1,"Persamaan dasarnya adalah Harta = Utang + Modal."],
+["Berikut yang termasuk akun harta adalah ...",["Utang usaha","Modal pemilik","Kas","Beban listrik"],2,"Kas termasuk harta karena merupakan sumber daya yang dimiliki perusahaan."],
+["Laporan yang menunjukkan posisi keuangan pada tanggal tertentu adalah ...",["Laporan laba rugi","Neraca","Laporan perubahan modal","Jurnal umum"],1,"Neraca menunjukkan aset, liabilitas, dan ekuitas."],
+["Jika pemilik menyetor uang tunai sebagai modal, maka ...",["Kas bertambah dan modal bertambah","Kas berkurang dan utang bertambah","Beban bertambah","Pendapatan berkurang"],0,"Setoran pemilik menambah kas sekaligus modal."],
+["Tempat pertama kali mencatat transaksi secara kronologis adalah ...",["Buku besar","Neraca saldo","Jurnal","Laporan laba rugi"],2,"Transaksi pertama kali dicatat dalam jurnal berdasarkan urutan tanggal."],
+["Akun yang normalnya memiliki saldo debit adalah ...",["Pendapatan","Utang","Modal","Beban"],3,"Akun beban bertambah di sisi debit."],
+["Pembelian perlengkapan secara tunai menyebabkan ...",["Perlengkapan bertambah, kas berkurang","Utang bertambah, kas bertambah","Modal bertambah","Pendapatan bertambah"],0,"Perlengkapan naik sebagai aset, sedangkan kas turun."],
+["Laporan laba rugi digunakan untuk mengetahui ...",["Jumlah karyawan","Laba atau rugi selama periode tertentu","Daftar pelanggan","Posisi kas satu tanggal saja"],1,"Laporan laba rugi merangkum pendapatan dan beban."],
+["Pendapatan dikurangi beban menghasilkan ...",["Aset","Utang","Laba atau rugi","Prive"],2,"Pendapatan lebih besar dari beban berarti laba; sebaliknya berarti rugi."],
+["Bukti transaksi pembelian barang secara tunai biasanya berupa ...",["Kuitansi atau nota","Kartu keluarga","Surat izin","Daftar hadir"],0,"Nota atau kuitansi menjadi bukti transaksi pembelian."],
+["Buku besar berfungsi untuk ...",["Mencatat transaksi berdasarkan akun","Menyimpan uang tunai","Menghitung pelanggan","Membuat iklan"],0,"Buku besar mengelompokkan transaksi ke masing-masing akun."],
+["Jika perusahaan membayar utang kepada pemasok, maka ...",["Kas dan utang bertambah","Kas berkurang dan utang berkurang","Modal bertambah","Pendapatan bertambah"],1,"Pembayaran utang mengurangi kas dan kewajiban."],
+["Yang termasuk contoh beban usaha adalah ...",["Kas","Peralatan","Beban listrik","Modal"],2,"Tagihan listrik untuk kegiatan usaha merupakan beban."],
+["Prive dalam akuntansi berarti ...",["Tambahan pinjaman bank","Pengambilan uang/barang perusahaan oleh pemilik untuk pribadi","Pendapatan penjualan","Pembelian perlengkapan"],1,"Prive adalah pengambilan aset perusahaan oleh pemilik untuk kepentingan pribadi."],
+["Neraca saldo dibuat untuk ...",["Memeriksa keseimbangan jumlah debit dan kredit","Menentukan harga jual","Mencatat daftar hadir","Menghitung pajak kendaraan"],0,"Neraca saldo membantu memeriksa apakah total debit sama dengan kredit."],
+["Akun yang menunjukkan kewajiban perusahaan kepada pihak lain adalah ...",["Piutang","Peralatan","Utang usaha","Pendapatan jasa"],2,"Utang usaha merupakan kewajiban kepada pemasok."],
+["Ketika perusahaan memberikan jasa dan menerima uang tunai, maka ...",["Kas dan pendapatan bertambah","Kas dan beban bertambah","Utang bertambah","Modal berkurang"],0,"Penerimaan pembayaran jasa menambah kas dan pendapatan."],
+["Mengapa transaksi harus didukung bukti yang jelas?",["Agar laporan terlihat panjang","Agar pencatatan dapat diperiksa dan dipertanggungjawabkan","Agar tidak perlu membuat jurnal","Agar tidak memiliki beban"],1,"Bukti transaksi membuat pencatatan akurat dan dapat ditelusuri."],
+["Sikap penting yang harus dimiliki seorang akuntan adalah ...",["Ceroboh","Tidak teliti","Jujur, teliti, dan bertanggung jawab","Mengubah angka sesuka hati"],2,"Kejujuran dan ketelitian membuat informasi keuangan dapat dipercaya."]
 ];
-let order=[],index=0,score=0,locked=false,correct=0,wrong=0,player="Pemain";
-const $=id=>document.getElementById(id);
-function show(id){["home","game","result"].forEach(x=>$(x).classList.toggle("hidden",x!==id))}
-function start(){player=$("player").value.trim()||"Pemain";order=[...questions.keys()].sort(()=>Math.random()-.5);index=0;score=0;correct=0;wrong=0;$("playerLabel").textContent="👤 "+player;show("game");render()}
-function render(){locked=false;const q=questions[order[index]];$("score").textContent=score;$("counter").textContent=`PERTANYAAN ${index+1} / 20`;$("progress").style.width=((index)/20*100)+"%";$("level").textContent=index<7?"PEMULA":index<14?"MENENGAH":"AHLI";$("category").textContent=q.c;$("question").textContent=q.q;$("feedback").classList.add("hidden");$("next").classList.add("hidden");$("options").innerHTML="";q.o.forEach((v,i)=>{const b=document.createElement("button");b.className="option";b.innerHTML=`<span class="letter">${"ABCD"[i]}</span>${v}`;b.onclick=()=>answer(i);$("options").appendChild(b)})}
-function answer(n){if(locked)return;locked=true;const q=questions[order[index]];const buttons=[...$("options").children];buttons.forEach((b,i)=>{b.disabled=true;if(i===q.a)b.classList.add("correct");if(i===n&&n!==q.a)b.classList.add("wrong");if(i===n&&n===q.a)b.classList.add("selected")});if(n===q.a){score+=5;correct++}else wrong++;$("score").textContent=score;$("feedback").classList.remove("hidden");$("feedback").innerHTML=(n===q.a?"<strong>✅ Tepat! +5 poin.</strong> ":"<strong>❌ Belum tepat.</strong> ")+`<br>Jawaban benar: <strong>${"ABCD"[q.a]}. ${q.o[q.a]}</strong><br>${q.e}`;$("next").textContent=index===19?"LIHAT HASIL AKHIR 🏆":"LANJUT →";$("next").classList.remove("hidden")}
-function next(){index++;if(index<20)render();else finish()}
-function finish(){show("result");$("progress").style.width="100%";$("greeting").textContent="Hebat, "+player+"!";$("finalScore").textContent=score+"/100";$("message").textContent=score>=90?"Luar biasa! Kamu menguasai dasar-dasar akuntansi.":score>=75?"Bagus sekali! Pengetahuan akuntansimu sudah kuat.":score>=60?"Kerja bagus! Terus latih kemampuanmu.": "Jangan menyerah! Pelajari pembahasannya dan coba lagi."; $("review").innerHTML=`<strong>📌 Rangkuman hasil</strong><br>✅ Jawaban benar: ${correct}<br>❌ Jawaban salah: ${wrong}<br>⭐ Poin terkumpul: ${score}<br><br>Bagikan game ini dan ajak temanmu mencoba mendapat skor tertinggi!`}
-$("start").onclick=start;$("next").onclick=next;$("again").onclick=()=>{show("home");$("player").value=player};
-</script>
-</body>
-</html>
+let n=0,score=0,done=false,name="Pemain";const $=x=>document.getElementById(x);
+function show(id){["start","game","result"].forEach(x=>$(x).classList.toggle("hidden",x!==id))}
+function begin(){name=$("player").value.trim()||"Pemain";n=0;score=0;$("playerLabel").textContent=name;show("game");draw()}
+function draw(){done=false;let q=Q[n];$("score").textContent=score;$("counter").textContent=`PERTANYAAN ${n+1} / 20`;$("bar").style.width=(n/20*100)+"%";$("level").textContent=n<7?"PEMULA":n<14?"MENENGAH":"TANTANGAN";$("question").textContent=q[0];$("feedback").className="feedback";$("feedback").textContent="";$("nextBtn").classList.add("hidden");$("options").innerHTML="";q[1].forEach((v,i)=>{let b=document.createElement("button");b.className="option";b.textContent="ABCD"[i]+". "+v;b.onclick=()=>answer(i);$("options").appendChild(b)})}
+function answer(i){if(done)return;done=true;let q=Q[n];[...$("options").children].forEach((b,j)=>{b.disabled=true;if(j===q[2])b.classList.add("correct");if(j===i&&i!==q[2])b.classList.add("wrong")});let ok=i===q[2];if(ok)score+=5;$("score").textContent=score;$("feedback").className="feedback show "+(ok?"good":"bad");$("feedback").textContent=(ok?"✅ Benar! +5 poin. ":"❌ Belum tepat. ")+q[3];$("nextBtn").textContent=n===19?"LIHAT HASIL 🏆":"PERTANYAAN BERIKUTNYA →";$("nextBtn").classList.remove("hidden")}
+function next(){if(n<19){n++;draw()}else finish()}
+function finish(){show("result");$("resultName").textContent="Hebat, "+name+"! Ini hasil permainanmu:";$("finalScore").textContent=score+"/100";$("rank").textContent=score>=90?"AKUNTAN MASTER 🥇":score>=70?"JAGO AKUNTANSI 🥈":score>=50?"CALON AKUNTAN 🥉":"PELAJAR HEBAT 🌟";$("message").textContent=score>=70?"Pemahaman akuntansimu sudah bagus. Pertahankan!":"Terus berlatih dan coba lagi. Setiap permainan adalah kesempatan belajar."}
+$("startBtn").onclick=begin;$("nextBtn").onclick=next;$("againBtn").onclick=()=>show("start");
+</script></body></html>
